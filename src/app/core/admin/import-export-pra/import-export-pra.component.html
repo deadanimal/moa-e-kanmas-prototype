@@ -1,0 +1,621 @@
+<div class="header pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-dark d-inline-block mb-0">
+            Pendaftaran Pengimport/Pengeksport
+          </h6>
+
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item">
+                <a href="javascript:void(0)">
+                  <i class="fas fa-exchange-alt text-dark"></i>
+                </a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="javascript:void(0)" class="text-dark">
+                  Pra-Pemeriksaan
+                </a>
+              </li>
+              <li aria-current="page" class="breadcrumb-item active">
+                Pendaftaran
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="text-uppercase text-muted ls-1 mb-1">Carta Pai</h6>
+          <h5 class="h3 mb-0">Status Pendaftaran</h5>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <div class="amchart" id="ixpra1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="text-uppercase text-muted ls-1 mb-1">Carta Bar</h6>
+          <h5 class="h3 mb-0">Pendaftaran Mengikut Negeri</h5>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <div class="amchart" id="ixpra2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="text-uppercase text-muted ls-1 mb-1">Carta Pai</h6>
+          <h5 class="h3 mb-0">Jenis Komoditi</h5>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <div class="amchart" id="ixpra3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="text-uppercase text-muted ls-1 mb-1">Carta Pai</h6>
+          <h5 class="h3 mb-0">Jenis Saiz Ladang</h5>
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <div class="amchart" id="ixpra4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="h3 mb-0">Pencarian Aplikasi</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-3">
+              <form>
+                <div class="form-group">
+                  <label class="form-control-label">Syarikat Berdaftar</label>
+                  <input class="form-control" type="text" />
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-3">
+              <form>
+                <div class="form-group">
+                  <label class="form-control-label">Negeri</label>
+                  <input class="form-control" type="text" />
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-3">
+              <form>
+                <div class="form-group">
+                  <label class="form-control-label">Jenis Komoditi</label>
+                  <input class="form-control" type="text" />
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-3">
+              <form>
+                <div class="form-group">
+                  <label class="form-control-label">Jenis Saiz Ladang</label>
+                  <input class="form-control" type="text" />
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-end">
+            <div class="col-auto">
+              <button class="btn btn-primary">Cari</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col">
+              <h5 class="h3 mb-0">Senarai Aplikasi</h5>
+            </div>
+            <div class="col-auto">
+              <button
+                class="btn btn-secondary btn-sm"
+                (click)="openModal(baru)"
+              >
+                Baru
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="dataTables_wrapper">
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <div class="dataTables_length" id="datatable_length">
+                  <label>
+                    Show
+                    <select
+                      name="datatable_length"
+                      aria-controls="datatable"
+                      class="form-control form-control-sm"
+                      (change)="entriesChange($event)"
+                    >
+                      <option value="5" [selected]="entries == 5">5</option>
+                      <option value="10" [selected]="entries == 10">10</option>
+                      <option value="15" [selected]="entries == 15">15</option>
+                      <option value="-1" [selected]="entries == -1">All</option>
+                    </select>
+                    entries
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <div id="datatable_filter" class="dataTables_filter">
+                  <label>
+                    <input
+                      type="search"
+                      class="form-control form-control-sm"
+                      placeholder="Search records"
+                      aria-controls="datatable"
+                      (keyup)="filterTable($event)"
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <ngx-datatable
+              class="bootstrap selection-cell"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [rowHeight]="'auto'"
+              [limit]="entries != -1 ? entries : undefined"
+              [rows]="temp"
+              (activate)="onActivate($event)"
+            >
+              <ngx-datatable-column name="syarikat">
+                <ng-template ngx-datatable-header-template>
+                  <span>Nama Syarikat</span>
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Negeri"></ngx-datatable-column>
+              <ngx-datatable-column name="pemilikan">
+                <ng-template ngx-datatable-header-template>
+                  <span>Jenis Pemilikan Ladang</span>
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="saiz">
+                <ng-template ngx-datatable-header-template>
+                  <span>Jenis Saiz Ladang</span>
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="status">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <span
+                    *ngIf="row.status == '1'"
+                    class="badge badge-pill badge-success"
+                    >Lulus</span
+                  >
+                  <span
+                    *ngIf="row.status == '2'"
+                    class="badge badge-pill badge-danger"
+                    >Gagal</span
+                  >
+                  <span
+                    *ngIf="row.status == '3'"
+                    class="badge badge-pill badge-warning"
+                    >Dalam pemeriksaan</span
+                  >
+                  <span
+                    *ngIf="row.status == '4'"
+                    class="badge badge-pill badge-info"
+                    >Lulus bersyarat</span
+                  >
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column>
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <a class="btn btn-sm btn-secondary">
+                    <i class="fas fa-eye text-default"></i>
+                  </a>
+                  <a class="btn btn-sm btn-secondary">
+                    <i class="fas fa-trash text-default"></i>
+                  </a>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #baru>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Daftar Baru
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <mat-horizontal-stepper #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Maklumat Utama</ng-template>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Syarikat berdaftar</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  value="Shan Cheng Enterprise"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">H/P</label>
+                <input class="form-control" type="text" value="012-5123020" />
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">Email</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  value="seng625@hotmail.com"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">No. Registrasi</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Orang yang dihubungi</label>
+                <input class="form-control" type="text" value="Ho Pon Seng" />
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">Tel</label>
+                <input class="form-control" type="text" value="05-2012987" />
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">Fax</label>
+                <input class="form-control" type="text" value="Tiada" />
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">No. Registrasi Pengeksport</label>
+                <input class="form-control" type="text" value="A-0008-E13" />
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-default" mat-button matStepperNext>
+              Seterusnya
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Lokasi</ng-template>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Negeri</label>
+                <input class="form-control" type="text" value="Perak" />
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">Alamat berdaftar</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  value="3, Behind Chemor Park, 31200 Chemor, Perak"
+                />
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Daerah</label>
+                <input class="form-control" type="text" value="Chemor" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <!-- map -->
+              <h5>Pin lokasi</h5>
+              <div id="container">
+                <div class="map" id="map"></div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 d-flex justify-content-end">
+            <button class="btn btn-danger" mat-button matStepperPrevious>
+              Kembali
+            </button>
+            <button class="btn btn-default" mat-button matStepperNext>
+              Seterusnya
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Tugasan Pemeriksaan</ng-template>
+          <div class="row">
+            <div class="col">
+              <h5 class="h3 mb-0">Penetapan Pemeriksaan Premis</h5>
+              <h5 class="h4 mt-2">Pilihan Pegawai</h5>
+              <div class="row">
+                <div class="col-lg-3">
+                  <img
+                    alt="Image placeholder"
+                    class="card-img-top"
+                    src="assets/img/theme/img-1-1000x900.jpg"
+                  />
+                  <div class="custom-control custom-radio">
+                    <input
+                      type="radio"
+                      id="customRadioInline1"
+                      name="customRadioInline1"
+                      class="custom-control-input"
+                    />
+                    <label
+                      class="custom-control-label"
+                      for="customRadioInline1"
+                    >
+                      <span class="h4 mb-0">Ali bin Samad</span>
+                    </label>
+                    <p>Pegawai J40</p>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <img
+                    alt="Image placeholder"
+                    class="card-img-top"
+                    src="assets/img/theme/img-1-1000x900.jpg"
+                  />
+                  <div class="custom-control custom-radio">
+                    <input
+                      type="radio"
+                      id="customRadioInline2"
+                      name="customRadioInline1"
+                      class="custom-control-input"
+                    />
+                    <label
+                      class="custom-control-label"
+                      for="customRadioInline2"
+                    >
+                      <span class="h4 mb-0">Abu bin Khamis</span>
+                    </label>
+                    <p>Pegawai J44</p>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <img
+                    alt="Image placeholder"
+                    class="card-img-top"
+                    src="assets/img/theme/img-1-1000x900.jpg"
+                  />
+                  <div class="custom-control custom-radio">
+                    <input
+                      type="radio"
+                      id="customRadioInline3"
+                      name="customRadioInline1"
+                      class="custom-control-input"
+                    />
+                    <label
+                      class="custom-control-label"
+                      for="customRadioInline3"
+                    >
+                      <span class="h4 mb-0">Ros bin Borhan</span>
+                    </label>
+                    <p>Pegawai J46</p>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <img
+                    alt="Image placeholder"
+                    class="card-img-top"
+                    src="assets/img/theme/img-1-1000x900.jpg"
+                  />
+                  <div class="custom-control custom-radio">
+                    <input
+                      type="radio"
+                      id="customRadioInline4"
+                      name="customRadioInline1"
+                      class="custom-control-input"
+                    />
+                    <label
+                      class="custom-control-label"
+                      for="customRadioInline4"
+                    >
+                      <span class="h4 mb-0">Faez bin Ali</span>
+                    </label>
+                    <p>Pegawai J48</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <form>
+                    <div class="form-group">
+                      <label
+                        for="example-datetime-local-input"
+                        class="form-control-label"
+                        >Tarikh & Masa</label
+                      >
+                      <input
+                        class="form-control"
+                        type="datetime-local"
+                        value="2018-11-23T10:30:00"
+                        id="example-datetime-local-input"
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="row d-flex justify-content-end">
+                <div class="col-lg-5">
+                  <form>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Catatan:</label>
+                      <textarea
+                        class="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows="2"
+                      ></textarea>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-danger" mat-button matStepperPrevious>
+              Kembali
+            </button>
+            <button class="btn btn-default" mat-button matStepperNext>
+              Seterusnya
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="fourthFormGroup">
+        <form [formGroup]="fourthFormGroup">
+          <ng-template matStepLabel>Pilihan Komoditi</ng-template>
+          <div class="row">
+              <div class="col">
+                  <h4>Pilihan Komoditi</h4>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">Tropical Fish</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                    <label class="custom-control-label" for="customCheck2">Goldfish</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                    <label class="custom-control-label" for="customCheck3">Discus</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck4">
+                    <label class="custom-control-label" for="customCheck4">Batu Karang</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck5">
+                    <label class="custom-control-label" for="customCheck5">Ikan Makan</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck6">
+                    <label class="custom-control-label" for="customCheck6">Lintah</label>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck7">
+                    <label class="custom-control-label" for="customCheck7">Ikan Koi</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck8">
+                    <label class="custom-control-label" for="customCheck8">Arowana</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck9">
+                    <label class="custom-control-label" for="customCheck9">Tropical Marin</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck10">
+                    <label class="custom-control-label" for="customCheck10">Udang Hiasan</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck11">
+                    <label class="custom-control-label" for="customCheck11">Udang Makan</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck12">
+                    <label class="custom-control-label" for="customCheck12">Kerang</label>
+                </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-danger mt-3" mat-button matStepperPrevious>
+              Kembali
+            </button>
+            <button class="btn btn-success mt-3" mat-button (click)="confirm()">
+              Hantar
+            </button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+
+  <!-- <div class="modal-footer">
+    <button class="btn btn-success" type="button" (click)="confirm()">
+            Create
+        </button>
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Tutup
+    </button>
+  </div> -->
+</ng-template>
